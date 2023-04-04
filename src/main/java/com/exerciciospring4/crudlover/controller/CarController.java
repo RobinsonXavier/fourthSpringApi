@@ -13,6 +13,8 @@ import com.exerciciospring4.crudlover.dto.CarDTO;
 import com.exerciciospring4.crudlover.model.Car;
 import com.exerciciospring4.crudlover.repository.CarRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/crudlover/car")
 public class CarController {
@@ -21,7 +23,7 @@ public class CarController {
   private CarRepository repository;
   
   @PostMapping
-  public void createCar(@RequestBody CarDTO req) {
+  public void createCar(@RequestBody @Valid CarDTO req) {
     repository.save(new Car(req));
   }
 
@@ -29,6 +31,5 @@ public class CarController {
   public List<Car> listAll() {
     return repository.findAll();
   }
-
 
 }
